@@ -14,7 +14,7 @@ Repository ini merupakan proyek akhir untuk Modul Belajar Analisis Data dengan P
 
 
 ## Setup Environment - Shell/Terminal
-sh
+-sh
 -cd submission
 -pipenv install
 -pipenv shell
