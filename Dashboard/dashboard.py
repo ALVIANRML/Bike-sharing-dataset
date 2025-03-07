@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 # --- Konfigurasi Halaman ---
 st.set_page_config(
@@ -15,12 +16,9 @@ st.title("🚲 Analisis Pengguna Sepeda")
 st.markdown("Menganalisis pola penggunaan selama 2 tahun.")
 
 # Gathering data
-try:
-    hour_df = pd.read_csv("../data\hour.csv")
-    day_df = pd.read_csv("../data\day.csv")
-except FileNotFoundError:
-    st.error("File CSV tidak ditemukan. Pastikan path file benar.")
-    st.stop()
+
+hour_df = pd.read_csv("../data/data_1.csv")
+day_df = pd.read_csv("../data/data_2.csv")
 
 # Clean data
 datetime_column = ["dteday", "date_time"]
@@ -96,4 +94,4 @@ with col2:
     ax2.grid(True, linestyle='--', alpha=0.6)
 
     st.pyplot(fig2)
-    
+    st.write(f"Current Directory: {os.getcwd()}")
