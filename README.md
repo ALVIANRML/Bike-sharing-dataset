@@ -5,12 +5,20 @@ Repository ini merupakan proyek akhir untuk Modul Belajar Analisis Data dengan P
 ---
 
 ## Analysis data used
-google collab
+-google collab
+-csv
 
 ## Run Streamlit App
-sh
-streamlit run dashboard\dashboard.py
+-sh
+-streamlit run dashboard\dashboard.py
 
+
+## Setup Environment - Shell/Terminal
+sh
+-cd submission
+-pipenv install
+-pipenv shell
+-pip install -r requirements.txt
 
 ---
 
@@ -18,6 +26,7 @@ streamlit run dashboard\dashboard.py
 - Python
 - Pandas
 - numpy
+- csv
 - Matplotlib
 - Streamlit
 - google collab
