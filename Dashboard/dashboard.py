@@ -16,7 +16,9 @@ st.title("🚲 Analisis Pengguna Sepeda")
 st.markdown("Menganalisis pola penggunaan selama 2 tahun.")
 
 # Gathering data
-
+print("Current Directory:", os.getcwd())
+print("Files in Current Directory:", os.listdir("."))
+print("Files in Parent Directory:", os.listdir(".."))
 hour_df = pd.read_csv("../data/hour.csv")
 day_df = pd.read_csv("../data/day.csv")
 
