@@ -16,8 +16,8 @@ st.markdown("Menganalisis pola penggunaan selama 2 tahun.")
 
 # Gathering data
 try:
-    hour_df = pd.read_csv(r"..\data\hour.csv")
-    day_df = pd.read_csv(r"..\data\day.csv")
+    hour_df = pd.read_csv("../data\hour.csv")
+    day_df = pd.read_csv("../data\day.csv")
 except FileNotFoundError:
     st.error("File CSV tidak ditemukan. Pastikan path file benar.")
     st.stop()
