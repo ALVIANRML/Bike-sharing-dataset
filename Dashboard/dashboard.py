@@ -17,8 +17,8 @@ st.markdown("Menganalisis pola penggunaan selama 2 tahun.")
 
 # Gathering data
 
-hour_df = pd.read_csv("../data/data_1.csv")
-day_df = pd.read_csv("../data/data_2.csv")
+hour_df = pd.read_csv("../data/hour.csv")
+day_df = pd.read_csv("../data/day.csv")
 
 # Clean data
 datetime_column = ["dteday", "date_time"]
