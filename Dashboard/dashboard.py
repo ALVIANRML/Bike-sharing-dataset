@@ -4,22 +4,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-# --- Konfigurasi Halaman ---
 st.set_page_config(
     page_title="Dashboard Produksi",
     page_icon="📊",
     layout="wide"
 )
 
-# --- Header ---
 st.title("🚲 Analisis Pengguna Sepeda")
 st.markdown("Menganalisis pola penggunaan selama 2 tahun.")
 
-# Load data
 hour_df = pd.read_csv("data/hour.csv")
 day_df = pd.read_csv("data/day.csv")
 
-# Clean data
 datetime_column = ["dteday", "date_time"]
 for column in datetime_column:
     if column in day_df.columns:
@@ -27,35 +23,29 @@ for column in datetime_column:
     if column in hour_df.columns:
         hour_df[column] = pd.to_datetime(hour_df[column])
 
-# Mapping hari dalam urutan yang benar
 day_order = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
 day_df['weekday'] = day_df['weekday'].map({0: 'Minggu', 1: 'Senin', 2: 'Selasa', 3: 'Rabu', 4: 'Kamis', 5: 'Jumat', 6: 'Sabtu'})
 day_df['weekday'] = pd.Categorical(day_df['weekday'], categories=day_order, ordered=True)
 
-# Sidebar untuk filter
 st.sidebar.header("Filter Data")
 selected_season = st.sidebar.selectbox("Pilih Musim", ['Semua Musim', 'Semi', 'Gugur', 'Panas', 'Dingin'])
 show_total_users = st.sidebar.checkbox("Tampilkan Total Pengguna")
 
-# Filter data berdasarkan musim
 season_map = {'Semi': 1, 'Gugur': 2, 'Panas': 3, 'Dingin': 4}
 if selected_season == 'Semua Musim':
     filtered_df = hour_df
 else:
     filtered_df = hour_df[hour_df['weathersit'] == season_map[selected_season]]
 
-# Rata-rata pengguna
 casual_avg = filtered_df['casual'].mean()
 registered_avg = filtered_df['registered'].mean()
 total_avg = filtered_df['cnt'].mean() if show_total_users else None
 
-# Layout dengan metrik
 st.metric("📌 Pengguna Casual", f"{casual_avg:.2f}")
 st.metric("📌 Pengguna Registered", f"{registered_avg:.2f}")
 if show_total_users:
     st.metric("📌 Total Pengguna", f"{total_avg:.2f}")
 
-# Grafik Perbandingan Pengguna
 st.subheader("📊 Perbandingan Penggunaan Sepeda")
 if selected_season == 'Semua Musim':
     labels = ['Semi', 'Gugur', 'Panas', 'Dingin']
@@ -88,7 +78,6 @@ else:
     
     st.pyplot(fig)
 
-# Tren Penggunaan Sepeda per Hari
 day_avg = day_df.groupby('weekday').mean()
 
 st.subheader("📈 Tren Penggunaan Sepeda per Hari")
